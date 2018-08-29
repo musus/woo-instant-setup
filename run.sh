@@ -14,7 +14,7 @@ WP_DESC='Hello World!'
 WP_XML=$(pwd)/import.xml
 
 if [ -e "$WP_PATH/wp-config.php" ]; then
-    open http://127.0.0.1127:$PORT
+    open http://127.0.0.1:$PORT
     wp server --host=0.0.0.0 --port=$PORT --docroot=$WP_PATH
     exit 0
 fi
