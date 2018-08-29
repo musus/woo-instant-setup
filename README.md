@@ -18,20 +18,20 @@ fork by [miya0001/wp-instant-setup: WordPress desktop installer](https://github.
 ## Uage
 
 ```
-$ curl https://.../run.sh | bash -s <db-name>
+$ curl https://.../run.sh | bash -s <db-name> <db-user> <db-pass>
 ```
 
 or
 
 ```
-$ ./run.sh <db-name>
+$ ./run.sh <db-name> <db-user> <db-pass>
 ```
 
 ### Defaults
 
+* db-name: `woodev`
 * db-user: `root`
 * db-pass: (empty)
-* db-name: `woodev`
 
 ## How to use
 
