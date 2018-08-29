@@ -4,9 +4,9 @@ set -ex;
 
 mysql.server start
 
-DB_USER="root"
-DB_PASS=""
 DB_NAME=${1-woodev}
+DB_USER=${2-root}
+DB_PASS=$3
 PORT=8080
 WP_PATH=$(pwd)/www
 WP_TITLE='Welcome to the WordPress'
