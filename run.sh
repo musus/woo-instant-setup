@@ -12,6 +12,7 @@ WP_PATH=$(pwd)/www
 WP_TITLE='Welcome to the WooCommerce'
 WP_DESC='Hello World!'
 WP_XML=$(pwd)/import.xml
+DUMMY_DATA="on"
 
 if [ -e "$WP_PATH/wp-config.php" ]; then
     open http://127.0.0.1:$PORT
@@ -81,15 +82,24 @@ if [ -e "provision-post.sh" ]; then
     bash provision-post.sh
 fi
 
-wp plugin install show-current-template admin-bar-id-menu simply-show-ids duplicate-post wordpress-importer mailcatcher --activate
-wp plugin activate wp-multibyte-patch
-wp plugin delete akismet hello
+# wp plugin install show-current-template admin-bar-id-menu simply-show-ids duplicate-post wordpress-importer mailcatcher woocommerce --activate
+wp plugin install woocommerce --activate
+wp plugin delete akismet hello wp-multibyte-patch
 
-if [ -f ${WP_XML} ]; then
-    wp import --authors=create import.xml
+# if [ "on" = "on"]; then
+#     # wp import --authors=create import.xml
+#     echo "yes"
+# else
+#     echo "no"
+#     # wget https://raw.githubusercontent.com/jawordpressorg/theme-test-data-ja/master/wordpress-theme-test-date-ja.xml
+#     # wp import --authors=create wordpress-theme-test-date-ja.xml
+# fi
+
+if [ $DUMMY_DATA = "on" ]; then
+    wp plugin install wordpress-importer --activate
+    wp import --authors=create test/sample_products.xml
 else
-    wget https://raw.githubusercontent.com/jawordpressorg/theme-test-data-ja/master/wordpress-theme-test-date-ja.xml
-    wp import --authors=create wordpress-theme-test-date-ja.xml
+  echo "not import dummy data"
 fi
 
 open http://127.0.0.1:$PORT
